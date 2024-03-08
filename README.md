@@ -28,6 +28,7 @@ Then add this to the file:
 
 ```ruby
 #!/usr/bin/env ruby
+require 'bundler/setup'
 require 'gl_lint'
 
 GlLint.run_cli(app_root: File.expand_path('..', __dir__))
@@ -35,8 +36,9 @@ GlLint.run_cli(app_root: File.expand_path('..', __dir__))
 
 Then run `bin/lint` to lint your changes
 
-Alternatively, if your project doesn't have JavaScript -
+Alternatively, if your project doesn't have JavaScript, add `linters: ['rubocop]`
 
 ```ruby
-GlLint.run_cli(app_root: File.expand_path('..', __dir__), linters: ['rubocop'])
+GlLint.run_cli(app_root: File.expand_path('..', __dir__),
+               linters: ['rubocop'])
 ```
