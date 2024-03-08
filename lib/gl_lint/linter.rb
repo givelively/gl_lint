@@ -29,7 +29,7 @@ module GlLint
       if target_files == '--all'
         puts '--all', ''
       elsif files&.none?
-        puts "No #{linter} files to lint!"
+        puts "* No #{linter} files to lint! *"
         return :no_lint
       else
         puts files, ''
