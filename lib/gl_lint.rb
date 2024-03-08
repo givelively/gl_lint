@@ -1,7 +1,7 @@
-require_relative '../lib/cli_parser'
-require_relative '../lib/file_selector'
-require_relative '../lib/linter'
-require_relative '../lib/export_rubocop'
+require 'gl_lint/cli'
+require 'gl_lint/file_selector'
+require 'gl_lint/linter'
+require 'gl_lint/export_rubocop'
 
 module GlLint
   class << self

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path("../lib", __FILE__)
+lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'gl_lint/version'
 
@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name = 'gl_lint'
   spec.version = GlLint::VERSION
   spec.authors = ['Give Lively']
-  spec.summary = 'Give Lively linter'
+  spec.summary = 'Give Lively linter tool'
   spec.homepage = 'https://github.com/givelively/gl_lint'
   spec.license = 'Apache'
   spec.platform = Gem::Platform::RUBY

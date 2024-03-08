@@ -1,8 +1,8 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe GlLint::ExportRubocop do
   describe 'stored_rule' do
-    let(:app_root) { Rails.root.to_s }
+    let(:app_root) { Dir.pwd }
 
     context 'with Bundler/DuplicatedGem' do
       let(:input) do
