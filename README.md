@@ -28,7 +28,7 @@ Then add this to the file:
 
 ```ruby
 #!/usr/bin/env ruby
-require 'bundler/setup'
+require 'rubygems'
 require 'gl_lint'
 
 GlLint.run_cli(app_root: File.expand_path('..', __dir__))
