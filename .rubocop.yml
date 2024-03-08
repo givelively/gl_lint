@@ -14,6 +14,9 @@ Metrics/ClassLength:
 Metrics/ParameterLists:
   Max: 7
 
+Metrics/MethodLength:
+  Max: 15
+
 Performance/MapCompact:
   Enabled: false
 
@@ -25,8 +28,6 @@ Style/AsciiComments:
 
 Naming/MethodParameterName:
   MinNameLength: 1
-
-Style/ClassAndModuleChildren:
 
 Style/Documentation:
   Enabled: false

@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe GlLint::FileSelector do
   describe 'files' do
     context 'with filenames' do
-      let(:filenames) { ['packs/gl_lint/spec/lib/file_selector_spec.rb'] }
+      let(:filenames) { ['packs/metrics/spec/record_metric_spec.rb'] }
 
       it 'returns filenames' do
         expect(described_class.files(filenames:)).to eq({ rubocop: filenames, prettier: [] })

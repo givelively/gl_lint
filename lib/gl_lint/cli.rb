@@ -78,9 +78,7 @@ module GlLint
           options[:filenames] = ARGV
           puts "passed files: #{options[:filenames]}"
 
-          if options[:target_files]
-            raise "Passed both 'filenames' and 'target files': #{options[:target_files]}"
-          end
+          raise "Passed both 'filenames' and 'target files': #{options[:target_files]}" if options[:target_files]
         end
 
         options[:target_files] ||= options[:default_target]
