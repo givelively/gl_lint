@@ -26,4 +26,4 @@ jobs:
         run: bundle exec rspec
       # TODO: Make this use bin/lint
       - name: Lint
-        run: bundle exec rubocop .rubocop.yml
+        run: bundle exec rubocop -c .rubocop.yml
