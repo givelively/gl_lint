@@ -1,0 +1,29 @@
+# Run tests!
+name: "Ruby"
+
+on:
+  push: # Run on all pushes
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['3.3', '3.2', '3.1']
+    env:
+      RAILS_ENV: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      # Add or replace dependency steps here
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+      - run: bundle install
+      # Run tests
+      - name: Run tests
+        run: bundle exec rspec
+      # TODO: Make this use bin/lint
+      - name: Lint
+        run: bundle exec rubocop .rubocop.yml
