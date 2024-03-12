@@ -9,13 +9,15 @@ RSpec.describe GlLint do
       ARGV.replace(passed_args)
     end
 
-    after { ARGV.replace(@original_argv) }
+    after { ARGV.replace(@original_argv) } # rubocop:disable RSpec/InstanceVariable
 
     let(:passed_args) { ['--list-files', '--unsafe-fix'] }
 
     it 'parses the options' do
       expect_any_instance_of(GlLint::Linter).to receive(:lint).with(linters: %w[rubocop prettier],
-                                                                    target_files: '--changed', filenames: nil, lint_strategy: :list_only)
+                                                                    target_files: '--changed',
+                                                                    filenames: nil,
+                                                                    lint_strategy: :list_only)
       described_class.call_cli(app_root:)
     end
 
@@ -24,7 +26,9 @@ RSpec.describe GlLint do
 
       it 'parses the options' do
         expect_any_instance_of(GlLint::Linter).to receive(:lint).with(linters: %w[rubocop prettier],
-                                                                      target_files: '--changed', filenames: ['spec/gl_lint_spec.rb'], lint_strategy: :no_fix)
+                                                                      target_files: '--changed',
+                                                                      filenames: ['spec/gl_lint_spec.rb'],
+                                                                      lint_strategy: :no_fix)
         described_class.call_cli(app_root:)
       end
     end
