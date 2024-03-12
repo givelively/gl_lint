@@ -31,7 +31,7 @@ Then add this to the file:
 require 'rubygems'
 require 'gl_lint'
 
-GlLint.run_cli(app_root: File.expand_path('..', __dir__))
+GlLint.call_cli(app_root: File.expand_path('..', __dir__))
 ```
 
 Then run `bin/lint` to lint your changes
@@ -39,6 +39,6 @@ Then run `bin/lint` to lint your changes
 Alternatively, if your project doesn't have JavaScript, add `linters: ['rubocop]`
 
 ```ruby
-GlLint.run_cli(app_root: File.expand_path('..', __dir__),
+GlLint.call_cli(app_root: File.expand_path('..', __dir__),
                linters: ['rubocop'])
 ```

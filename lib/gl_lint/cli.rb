@@ -15,9 +15,8 @@ module GlLint
     class << self
       # Disabling metrics, it doesn't make sense to deconstruct the CLI parser
       # rubocop:disable Metrics
-      def parse(app_root:, linters: nil, default_target: nil)
-        options = lint_options(linters:, default_target:)
-                  .merge(app_root:)
+      def parse(app_root:, linters: nil, default_target: nil, options: {})
+        options = default_options(linters:, app_root:, default_target:).merge(options)
 
         OptionParser.new do |parser|
           TARGET_FILE_OPTS.each do |args|
@@ -80,7 +79,6 @@ module GlLint
 
           raise "Passed both 'filenames' and 'target files': #{options[:target_files]}" if options[:target_files]
         end
-
         options[:target_files] ||= options[:default_target]
         options
       end
@@ -88,11 +86,17 @@ module GlLint
 
       private
 
-      def lint_options(linters:, default_target: nil)
+      def default_options(linters:, app_root:, default_target:)
         {
+          app_root: app_root,
+          default_target: default_target || DEFAULT_TARGET,
+          filenames: nil,
           linters: linters || LINTERS,
+          list_only: false,
+          no_fix: false,
           unsafe_fix: ENV['UNSAFE_LINT'] == 'true',
-          default_target: default_target || DEFAULT_TARGET
+          verbose: false,
+          write_rubocop_rules: false
         }
       end
     end
