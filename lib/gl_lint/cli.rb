@@ -88,7 +88,7 @@ module GlLint
 
       def default_options(linters:, app_root:, default_target:)
         {
-          app_root: app_root,
+          app_root:,
           default_target: default_target || DEFAULT_TARGET,
           filenames: nil,
           linters: linters || LINTERS,

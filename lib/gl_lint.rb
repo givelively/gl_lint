@@ -5,7 +5,6 @@ require 'gl_lint/export_rubocop'
 
 module GlLint
   class << self
-
     def call_cli(app_root:, linters: nil)
       options = GlLint::CLI.parse(app_root:, linters:)
       puts 'Options: ', options, '' if options[:verbose]
@@ -13,7 +12,8 @@ module GlLint
       call(**options.except(:verbose))
     end
 
-    def call(app_root:, write_rubocop_rules:, no_fix:, list_only:, unsafe_fix:, linters:, target_files:, filenames:, default_target:)
+    def call(app_root:, write_rubocop_rules:, no_fix:, list_only:, unsafe_fix:, linters:, target_files:, filenames:,
+             default_target:)
       Dir.chdir(app_root) do
         if write_rubocop_rules
           GlLint::ExportRubocop.write_rules(app_root)
