@@ -54,6 +54,30 @@ RSpec.describe GlLint::ExportRubocop do
         expect(described_class.send(:stored_rule, app_root, input)).to eq target
       end
     end
+
+    context 'with nils' do
+      let(:input) do
+        ['Layout/FirstHashElementIndentation',
+         { 'Description' => 'Checks the indentation of the first key in a hash literal.',
+           'Enabled' => true,
+           'VersionAdded' => '0.68',
+           'VersionChanged' => '0.77',
+           'EnforcedStyle' => 'special_inside_parentheses',
+           'SupportedStyles' => %w[special_inside_parentheses consistent align_braces],
+           'IndentationWidth' => nil }]
+      end
+      let(:target) do
+        ['Layout/FirstHashElementIndentation',
+         { 'EnforcedStyle' => 'special_inside_parentheses',
+           'IndentationWidth' => nil,
+           'VersionAdded' => '0.68',
+           'VersionChanged' => '0.77' }]
+      end
+
+      it 'returns target' do
+        expect(described_class.send(:stored_rule, app_root, input)).to eq target
+      end
+    end
   end
 
   describe 'rubocop_version' do
@@ -68,9 +92,8 @@ RSpec.describe GlLint::ExportRubocop do
     it 'has the rules', skip: !RubyV::ON_TARGET_VERSION do
       # Write rubocop_rules.yml
       `bin/lint --write-rubocop-rules`
-      puts `git diff --exit-code .rubocop_rules.yml`
       # Verify that the file hasn't changed
-      expect(`git diff --exit-code .rubocop_rules.yml`).to eq('')
+      expect(`git diff --exit-code --ignore-space-change .rubocop_rules.yml`).to eq('')
     end
   end
 end
