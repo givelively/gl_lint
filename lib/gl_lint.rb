@@ -9,11 +9,12 @@ module GlLint
       options = GlLint::CLI.parse(app_root:, linters:)
       puts 'Options: ', options, '' if options[:verbose]
 
-      call(**options.except(:verbose))
+      call(**options.except(:verbose, :default_target))
     end
 
-    def call(app_root:, write_rubocop_rules:, no_fix:, list_only:, unsafe_fix:, linters:, target_files:, filenames:,
-             default_target:)
+    def call(app_root:, write_rubocop_rules: false, no_fix: false, list_only: false, unsafe_fix: false, linters: nil,
+             target_files: nil, filenames: nil)
+
       Dir.chdir(app_root) do
         if write_rubocop_rules
           GlLint::ExportRubocop.write_rules(app_root)
