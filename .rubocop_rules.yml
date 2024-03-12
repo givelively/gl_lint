@@ -1,4 +1,5 @@
 ---
+RuboCop-version: 1.62.0
 Bundler/DuplicatedGem:
   Severity: warning
   VersionAdded: '0.46'

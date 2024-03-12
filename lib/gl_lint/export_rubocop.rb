@@ -9,7 +9,9 @@ module GlLint
       def write_rules(app_root)
         puts 'Updating .rubocop_rules.yml'
 
-        enabled_rules = rubocop_rules.map { |arr| stored_rule(app_root, arr) }.compact
+        version = `rubocop -v`.strip
+        enabled_rules = [['RuboCop-version', version]] +
+                        rubocop_rules.map { |arr| stored_rule(app_root, arr) }.compact
 
         File.write('.rubocop_rules.yml', YAML.dump(enabled_rules.to_h))
       end
