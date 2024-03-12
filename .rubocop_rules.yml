@@ -826,12 +826,6 @@ Metrics/ModuleLength:
   CountComments: false
   Max: 100
   CountAsOne: []
-Metrics/ParameterLists:
-  VersionAdded: '0.25'
-  VersionChanged: '1.5'
-  Max: 9
-  CountKeywordArgs: true
-  MaxOptionalParameters: 3
 Metrics/PerceivedComplexity:
   VersionAdded: '0.25'
   VersionChanged: '0.81'

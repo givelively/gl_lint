@@ -10,6 +10,6 @@ RSpec.describe '.rubocop_rules.yml' do # rubocop:disable RSpec/DescribeClass
     GlLint.call(app_root: Dir.pwd, write_rubocop_rules: true)
 
     # Verify that the file hasn't changed
-    expect(`git diff --name-only --exit-code .rubocop_rules.yml`).to eq('')
+    expect(`git diff --exit-code .rubocop_rules.yml`).to eq('')
   end
 end
