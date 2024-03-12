@@ -68,7 +68,7 @@ RSpec.describe GlLint::ExportRubocop do
     it 'has the rules', skip: !RubyV::ON_TARGET_VERSION do
       # Write rubocop_rules.yml
       `bin/lint --write-rubocop-rules`
-
+      puts `git diff --exit-code .rubocop_rules.yml`
       # Verify that the file hasn't changed
       expect(`git diff --exit-code .rubocop_rules.yml`).to eq('')
     end
