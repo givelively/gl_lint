@@ -1,5 +1,14 @@
 require 'spec_helper'
 
+class RubyV
+  def self.minor_version(version)
+    version.split('.')[0..1].join('.')
+  end
+
+  TARGET_VERSION = '3.2.3'.freeze
+  ON_TARGET_VERSION = minor_version(RUBY_VERSION) == minor_version(TARGET_VERSION)
+end
+
 RSpec.describe GlLint::ExportRubocop do
   describe 'stored_rule' do
     let(:app_root) { Dir.pwd }
@@ -44,6 +53,24 @@ RSpec.describe GlLint::ExportRubocop do
       it 'returns target' do
         expect(described_class.send(:stored_rule, app_root, input)).to eq target
       end
+    end
+  end
+
+  describe 'rubocop_version' do
+    let(:target) { '1.62.0 (using Parser 3.3.0.5, rubocop-ast 1.31.1, running on ruby 3.2.3)' }
+
+    it 'returns the target', skip: !RubyV::ON_TARGET_VERSION do
+      expect(described_class.send(:rubocop_version)).to eq target
+    end
+  end
+
+  describe 'written_rules' do
+    it 'has the rules', skip: !RubyV::ON_TARGET_VERSION do
+      # Write rubocop_rules.yml
+      `bin/lint --write-rubocop-rules`
+
+      # Verify that the file hasn't changed
+      expect(`git diff --exit-code .rubocop_rules.yml`).to eq('')
     end
   end
 end

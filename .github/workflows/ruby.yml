@@ -12,6 +12,7 @@ jobs:
         ruby-version: ['3.3', '3.2', '3.1']
     env:
       RAILS_ENV: test
+      CI: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
