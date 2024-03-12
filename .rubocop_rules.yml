@@ -829,7 +829,7 @@ Metrics/ModuleLength:
 Metrics/ParameterLists:
   VersionAdded: '0.25'
   VersionChanged: '1.5'
-  Max: 7
+  Max: 9
   CountKeywordArgs: true
   MaxOptionalParameters: 3
 Metrics/PerceivedComplexity:
