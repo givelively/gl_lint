@@ -1,4 +1,6 @@
 ---
+RuboCop-version: 1.62.1 (using Parser 3.3.0.5, rubocop-ast 1.31.2, running on ruby
+  3.2.3)
 Bundler/DuplicatedGem:
   Severity: warning
   VersionAdded: '0.46'
@@ -826,12 +828,6 @@ Metrics/ModuleLength:
   CountComments: false
   Max: 100
   CountAsOne: []
-Metrics/ParameterLists:
-  VersionAdded: '0.25'
-  VersionChanged: '1.5'
-  Max: 7
-  CountKeywordArgs: true
-  MaxOptionalParameters: 3
 Metrics/PerceivedComplexity:
   VersionAdded: '0.25'
   VersionChanged: '0.81'
