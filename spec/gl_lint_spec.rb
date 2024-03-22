@@ -21,6 +21,19 @@ RSpec.describe GlLint do
       described_class.call_cli(app_root:)
     end
 
+    context 'with default_target and linters' do
+      let(:passed_args) { [] }
+
+      it 'uses the defaults the options' do
+        ENV['UNSAFE_LINT'] = 'true'
+        expect_any_instance_of(GlLint::Linter).to receive(:lint).with(linters: %w[rubocop],
+                                                                      target_files: '--all',
+                                                                      filenames: nil,
+                                                                      lint_strategy: :unsafe_fix)
+        described_class.call_cli(app_root:, default_target: '--all', linters: 'rubocop')
+      end
+    end
+
     context 'with a filename' do
       let(:passed_args) { ['--no-fix', 'spec/gl_lint_spec.rb'] }
 
