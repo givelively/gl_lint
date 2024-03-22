@@ -5,8 +5,8 @@ require 'gl_lint/export_rubocop'
 
 module GlLint
   class << self
-    def call_cli(app_root:, linters: nil)
-      options = GlLint::CLI.parse(app_root:, linters:)
+    def call_cli(app_root:, default_target: nil, linters: nil)
+      options = GlLint::CLI.parse(app_root:, linters:, default_target:)
       puts 'Options: ', options, '' if options[:verbose]
 
       call(**options.except(:verbose, :default_target))

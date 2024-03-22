@@ -91,7 +91,7 @@ module GlLint
           app_root:,
           default_target: default_target || DEFAULT_TARGET,
           filenames: nil,
-          linters: linters || LINTERS,
+          linters: Array(linters || LINTERS),
           list_only: false,
           no_fix: false,
           unsafe_fix: ENV['UNSAFE_LINT'] == 'true',
