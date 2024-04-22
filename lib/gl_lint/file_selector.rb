@@ -2,6 +2,7 @@ module GlLint
   class FileSelector
     NON_RB_RUBY_FILES = %w[Gemfile Rakefile config.ru
                            bin/bundle bin/lint bin/rubocop bin/setup bin/update].freeze
+    IGNORED_FILES = %w[db/schema.rb]
 
     class << self
       def files(filenames: nil, target_files: nil)
@@ -10,6 +11,7 @@ module GlLint
         if selected_files
           rubocop_files = selected_files.grep(/\.(rb|rake|gemspec)\z/)
           rubocop_files += selected_files & NON_RB_RUBY_FILES
+          rubocop_files -= IGNORED_FILES
 
           prettier_files = selected_files.grep(/\.(js|jsx|json|css|md)\z/)
         end

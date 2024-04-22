@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gl_lint (0.3.1)
+    gl_lint (0.3.2)
       optparse
       rubocop
       rubocop-performance
