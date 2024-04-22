@@ -2,7 +2,7 @@ module GlLint
   class FileSelector
     NON_RB_RUBY_FILES = %w[Gemfile Rakefile config.ru
                            bin/bundle bin/lint bin/rubocop bin/setup bin/update].freeze
-    IGNORED_FILES = %w[db/schema.rb]
+    IGNORED_FILES = %w[db/schema.rb].freeze
 
     class << self
       def files(filenames: nil, target_files: nil)
