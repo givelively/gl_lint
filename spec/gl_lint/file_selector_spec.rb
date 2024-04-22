@@ -4,9 +4,19 @@ RSpec.describe GlLint::FileSelector do
   describe 'files' do
     context 'with filenames' do
       let(:filenames) { ['packs/metrics/spec/record_metric_spec.rb'] }
+      let(:target) { { rubocop: filenames, prettier: [] } }
 
       it 'returns filenames' do
         expect(described_class.files(filenames:)).to eq({ rubocop: filenames, prettier: [] })
+      end
+
+      context 'with schema.rb' do
+        let(:filenames) { ['packs/metrics/spec/record_metric_spec.rb', 'Gemfile', 'db/schema.rb'] }
+        let(:target) { { rubocop: filenames - ['db/schema.rb'], prettier: [] } }
+
+        it 'returns filenames' do
+          expect(described_class.files(filenames:)).to eq target
+        end
       end
     end
 
