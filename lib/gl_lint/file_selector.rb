@@ -9,7 +9,7 @@ module GlLint
 
         if selected_files
           rubocop_files = selected_files.grep(/\.(rb|rake|gemspec)\z/)
-          rubocop_files += selected_files & NON_RB_RUBY_FILES
+          rubocop_files += selected_files.select { |f| f.end_with?(*NON_RB_RUBY_FILES) }
           # Make certain that schemas are ignored
           rubocop_files.reject! { |f| f.match?(%r{db/.*schema.rb}) }
 
