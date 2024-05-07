@@ -11,7 +11,7 @@ module GlLint
           rubocop_files = selected_files.grep(/\.(rb|rake|gemspec)\z/)
           rubocop_files += selected_files & NON_RB_RUBY_FILES
           # Make certain that schemas are ignored
-          rubocop_files.reject! { |f| f.match?(/db\/.*schema.rb/)}
+          rubocop_files.reject! { |f| f.match?(%r{db/.*schema.rb}) }
 
           prettier_files = selected_files.grep(/\.(js|jsx|json|css|md)\z/)
         end
