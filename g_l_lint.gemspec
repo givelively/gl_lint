@@ -3,16 +3,16 @@
 require 'English'
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'gl_lint/version'
+require 'g_l_lint/version'
 
 NON_GEM_FILES = ['Gemfile', 'Gemfile.lock', 'Guardfile', 'bin/lint'].freeze
 
 Gem::Specification.new do |spec|
-  spec.name = 'gl_lint'
-  spec.version = GlLint::VERSION
+  spec.name = 'g_l_lint'
+  spec.version = GLLint::VERSION
   spec.authors = ['Give Lively']
   spec.summary = 'Give Lively linter tool'
-  spec.homepage = 'https://github.com/givelively/gl_lint'
+  spec.homepage = 'https://github.com/givelively/g_l_lint'
   spec.license = 'Apache'
   spec.platform = Gem::Platform::RUBY
 

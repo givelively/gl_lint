@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module GlLint
+module GLLint
   VERSION = '0.3.5'
 end

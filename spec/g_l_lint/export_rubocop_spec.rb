@@ -9,7 +9,7 @@ class RubyV
   ON_TARGET_VERSION = minor_version(RUBY_VERSION) == minor_version(TARGET_VERSION)
 end
 
-RSpec.describe GlLint::ExportRubocop do
+RSpec.describe GLLint::ExportRubocop do
   describe 'stored_rule' do
     let(:app_root) { Dir.pwd }
 
