@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.3', '3.2', '3.1']
+        ruby-version: ['3.3', '3.2.3', '3.1']
     env:
       RAILS_ENV: test
+      CI: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,6 +25,5 @@ jobs:
       # Run tests
       - name: Run tests
         run: bundle exec rspec
-      # TODO: Make this use bin/lint
       - name: Lint
-        run: bundle exec rubocop -c .rubocop.yml
+        run: bin/lint --all --no-fix
