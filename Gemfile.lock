@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    g_l_lint (0.4.0)
+    gl_lint (0.4.0)
       optparse
       rubocop
       rubocop-performance
@@ -106,7 +106,7 @@ PLATFORMS
   arm64-darwin-23
 
 DEPENDENCIES
-  g_l_lint!
+  gl_lint!
   guard
   guard-rspec
   rspec

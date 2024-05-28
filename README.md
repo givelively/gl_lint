@@ -7,7 +7,7 @@ Linting tool.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'g_l_lint', require: false
+gem 'gl_lint', require: false
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install g_l_lint
+    $ gem install gl_lint
 
 ## Usage
 
@@ -29,7 +29,7 @@ Then add this to the file:
 ```ruby
 #!/usr/bin/env ruby
 require 'rubygems'
-require 'g_l_lint'
+require 'gl_lint'
 
 GLLint.call_cli(app_root: File.expand_path('..', __dir__))
 ```

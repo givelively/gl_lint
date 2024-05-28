@@ -1,7 +1,7 @@
-require 'g_l_lint/cli'
-require 'g_l_lint/file_selector'
-require 'g_l_lint/linter'
-require 'g_l_lint/export_rubocop'
+require 'gl_lint/cli'
+require 'gl_lint/file_selector'
+require 'gl_lint/linter'
+require 'gl_lint/export_rubocop'
 
 module GLLint
   class << self

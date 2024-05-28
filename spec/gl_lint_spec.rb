@@ -35,12 +35,12 @@ RSpec.describe GLLint do
     end
 
     context 'with a filename' do
-      let(:passed_args) { ['--no-fix', 'spec/g_l_lint_spec.rb'] }
+      let(:passed_args) { ['--no-fix', 'spec/gl_lint_spec.rb'] }
 
       it 'parses the options' do
         expect_any_instance_of(GLLint::Linter).to receive(:lint).with(linters: %w[rubocop prettier],
                                                                       target_files: '--changed',
-                                                                      filenames: ['spec/g_l_lint_spec.rb'],
+                                                                      filenames: ['spec/gl_lint_spec.rb'],
                                                                       lint_strategy: :no_fix)
         described_class.call_cli(app_root:)
       end
