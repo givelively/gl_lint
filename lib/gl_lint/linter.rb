@@ -1,10 +1,10 @@
-module GlLint
+module GLLint
   class Linter
     attr_accessor :linter_failures
 
     def lint(linters:, target_files:, lint_strategy:, filenames: nil)
       @linter_failures = []
-      files = GlLint::FileSelector.files(filenames:, target_files:)
+      files = GLLint::FileSelector.files(filenames:, target_files:)
 
       lint_ruby_files(linters, target_files, files[:rubocop], lint_strategy)
 

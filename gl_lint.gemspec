@@ -9,7 +9,7 @@ NON_GEM_FILES = ['Gemfile', 'Gemfile.lock', 'Guardfile', 'bin/lint'].freeze
 
 Gem::Specification.new do |spec|
   spec.name = 'gl_lint'
-  spec.version = GlLint::VERSION
+  spec.version = GLLint::VERSION
   spec.authors = ['Give Lively']
   spec.summary = 'Give Lively linter tool'
   spec.homepage = 'https://github.com/givelively/gl_lint'

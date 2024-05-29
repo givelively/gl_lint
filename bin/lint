@@ -2,6 +2,6 @@
 require 'bundler/setup' # don't use rubygems, keep references internal
 require 'gl_lint'
 
-GlLint.call_cli(app_root: File.expand_path('..', __dir__),
+GLLint.call_cli(app_root: File.expand_path('..', __dir__),
                 linters: 'rubocop',
                 default_target: '--all')

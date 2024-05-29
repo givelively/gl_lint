@@ -1,6 +1,6 @@
 require 'optparse'
 
-module GlLint
+module GLLint
   class CLI
     LINTERS = %w[rubocop prettier].freeze
     DEFAULT_TARGET = '--changed'.freeze

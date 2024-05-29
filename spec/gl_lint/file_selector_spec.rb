@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe GlLint::FileSelector do
+RSpec.describe GLLint::FileSelector do
   describe 'files' do
     context 'with filenames' do
       let(:filenames) { ['packs/metrics/spec/record_metric_spec.rb'] }

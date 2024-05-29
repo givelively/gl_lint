@@ -1,6 +1,6 @@
 require 'yaml'
 
-module GlLint
+module GLLint
   class ExportRubocop
     class << self
       IGNORED_PROPERTIES = %w[Description Enabled Reference Safe SafeAutoCorrect

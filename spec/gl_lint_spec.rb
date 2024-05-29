@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe GlLint do
+RSpec.describe GLLint do
   let(:app_root) { Dir.pwd }
 
   describe 'call_cli' do
@@ -14,7 +14,7 @@ RSpec.describe GlLint do
     let(:passed_args) { ['--list-files', '--unsafe-fix'] }
 
     it 'parses the options' do
-      expect_any_instance_of(GlLint::Linter).to receive(:lint).with(linters: %w[rubocop prettier],
+      expect_any_instance_of(GLLint::Linter).to receive(:lint).with(linters: %w[rubocop prettier],
                                                                     target_files: '--changed',
                                                                     filenames: nil,
                                                                     lint_strategy: :list_only)
@@ -26,7 +26,7 @@ RSpec.describe GlLint do
 
       it 'uses the defaults the options' do
         ENV['UNSAFE_LINT'] = 'true'
-        expect_any_instance_of(GlLint::Linter).to receive(:lint).with(linters: %w[rubocop],
+        expect_any_instance_of(GLLint::Linter).to receive(:lint).with(linters: %w[rubocop],
                                                                       target_files: '--all',
                                                                       filenames: nil,
                                                                       lint_strategy: :unsafe_fix)
@@ -38,7 +38,7 @@ RSpec.describe GlLint do
       let(:passed_args) { ['--no-fix', 'spec/gl_lint_spec.rb'] }
 
       it 'parses the options' do
-        expect_any_instance_of(GlLint::Linter).to receive(:lint).with(linters: %w[rubocop prettier],
+        expect_any_instance_of(GLLint::Linter).to receive(:lint).with(linters: %w[rubocop prettier],
                                                                       target_files: '--changed',
                                                                       filenames: ['spec/gl_lint_spec.rb'],
                                                                       lint_strategy: :no_fix)
@@ -50,7 +50,7 @@ RSpec.describe GlLint do
       let(:passed_args) { ['--no-fix', '--write-rubocop-rules'] }
 
       it 'parses the options' do
-        expect(GlLint::ExportRubocop).to receive(:write_rules).with(app_root)
+        expect(GLLint::ExportRubocop).to receive(:write_rules).with(app_root)
         described_class.call_cli(app_root:)
       end
     end

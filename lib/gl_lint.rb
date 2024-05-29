@@ -3,10 +3,10 @@ require 'gl_lint/file_selector'
 require 'gl_lint/linter'
 require 'gl_lint/export_rubocop'
 
-module GlLint
+module GLLint
   class << self
     def call_cli(app_root:, default_target: nil, linters: nil)
-      options = GlLint::CLI.parse(app_root:, linters:, default_target:)
+      options = GLLint::CLI.parse(app_root:, linters:, default_target:)
       puts 'Options: ', options, '' if options[:verbose]
 
       call(**options.except(:verbose, :default_target))
@@ -17,10 +17,10 @@ module GlLint
 
       Dir.chdir(app_root) do
         if write_rubocop_rules
-          GlLint::ExportRubocop.write_rules(app_root)
+          GLLint::ExportRubocop.write_rules(app_root)
         else
           lint_strategy = lint_strategy_from_options(no_fix:, list_only:, unsafe_fix:)
-          GlLint::Linter.new.lint(linters:, target_files:, filenames:, lint_strategy:)
+          GLLint::Linter.new.lint(linters:, target_files:, filenames:, lint_strategy:)
         end
       end
     end
