@@ -13,7 +13,7 @@ module GLLint
           # Make certain that schemas are ignored
           rubocop_files.reject! { |f| f.match?(%r{db/.*schema.rb}) }
 
-          prettier_files = selected_files.grep(/\.(js|jsx|json|css)\z/)
+          prettier_files = selected_files.grep(/\.(js|jsx|css)\z/)
         end
 
         { rubocop: rubocop_files, prettier: prettier_files }
