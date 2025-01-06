@@ -64,6 +64,15 @@ FactoryBot/CreateList:
 FactoryBot/FactoryClassName:
   VersionAdded: '1.37'
   VersionChanged: '2.24'
+GLCops/CallbackMethodNames: {}
+GLCops/InteractorInheritsFromInteractorBase:
+  Include:
+  - app/interactors/**/*
+GLCops/PreventErbFiles: {}
+GLCops/SidekiqInheritsFromSidekiqJob:
+  Include:
+  - app/**/*_worker.rb
+  - app/**/*_job.rb
 Gemspec/DuplicatedAssignment:
   Severity: warning
   VersionAdded: '0.52'
@@ -287,14 +296,15 @@ Layout/LeadingEmptyLines:
 Layout/LineLength:
   VersionAdded: '0.25'
   VersionChanged: '1.4'
-  Max: 120
+  Max: 100
   AllowHeredoc: true
   AllowURI: true
   URISchemes:
   - http
   - https
   IgnoreCopDirectives: true
-  AllowedPatterns: []
+  AllowedPatterns:
+  - "^ *#"
 Layout/MultilineArrayBraceLayout:
   VersionAdded: '0.49'
   EnforcedStyle: symmetrical
@@ -586,6 +596,8 @@ Lint/MissingSuper:
   AllowedParentClasses: []
   VersionAdded: '0.89'
   VersionChanged: '1.4'
+  Exclude:
+  - "/app/components/**/*"
 Lint/MixedRegexpCaptureTypes:
   VersionAdded: '0.85'
 Lint/MultipleComparison:
@@ -638,6 +650,8 @@ Lint/RedundantSafeNavigation:
   - eql?
   - respond_to?
   - equal?
+  - presence
+  - present?
 Lint/RedundantSplatExpansion:
   VersionAdded: '0.76'
   VersionChanged: '1.7'
@@ -668,6 +682,7 @@ Lint/SafeNavigationChain:
   - present?
   - blank?
   - presence
+  - presence_in
   - try
   - try!
   - in?
@@ -774,6 +789,19 @@ Lint/Void:
   VersionAdded: '0.9'
   VersionChanged: '1.61'
   CheckForMethodsWithNoSideEffects: false
+MagicNumbers/Base: {}
+MagicNumbers/NoArgument:
+  PermittedValues:
+  - 0
+  - 1
+MagicNumbers/NoDefault:
+  PermittedValues:
+  - 0
+  - 1
+MagicNumbers/NoReturn:
+  PermittedReturnValues:
+  - 0
+  - 1
 Metrics/AbcSize:
   VersionAdded: '0.27'
   VersionChanged: '1.5'
@@ -781,6 +809,11 @@ Metrics/AbcSize:
   AllowedPatterns: []
   CountRepeatedAttributes: true
   Max: 17
+  Exclude:
+  - "/db/**/*"
+  - "/spec/**/*"
+  - "/config/routes.rb"
+  - "/config/routes/*"
 Metrics/BlockLength:
   VersionAdded: '0.44'
   VersionChanged: '1.5'
@@ -794,6 +827,11 @@ Metrics/BlockLength:
   - "/**/*.gemspec"
   - "**/*_spec.rb"
   - "**/spec/**/*"
+  - "/app/admin/**/*"
+  - "/db/**/*"
+  - "/config/routes/*"
+  - "/config/coverband.rb"
+  - "/spec/**/*"
   inherit_mode:
     merge:
     - Exclude
@@ -808,12 +846,16 @@ Metrics/ClassLength:
   CountComments: false
   Max: 150
   CountAsOne: []
+  Exclude:
+  - "/db/seeds/**/*"
 Metrics/CyclomaticComplexity:
   VersionAdded: '0.25'
   VersionChanged: '0.81'
   AllowedMethods: []
   AllowedPatterns: []
   Max: 7
+  Exclude:
+  - "/db/seeds/**/*"
 Metrics/MethodLength:
   VersionAdded: '0.25'
   VersionChanged: '1.5'
@@ -822,18 +864,33 @@ Metrics/MethodLength:
   CountAsOne: []
   AllowedMethods: []
   AllowedPatterns: []
+  Exclude:
+  - "/app/mailers/**/*"
+  - "/config/routes/**/*"
+  - "/db/**/*"
+  - "/lib/tasks/**/*"
 Metrics/ModuleLength:
   VersionAdded: '0.31'
   VersionChanged: '0.87'
   CountComments: false
   Max: 100
   CountAsOne: []
+Metrics/ParameterLists:
+  VersionAdded: '0.25'
+  VersionChanged: '1.5'
+  Max: 5
+  CountKeywordArgs: true
+  MaxOptionalParameters: 3
+  Exclude:
+  - "/db/seeds/**/*"
 Metrics/PerceivedComplexity:
   VersionAdded: '0.25'
   VersionChanged: '0.81'
   AllowedMethods: []
   AllowedPatterns: []
   Max: 8
+  Exclude:
+  - "/db/seeds/**/*"
 Migration/DepartmentName:
   VersionAdded: '0.75'
 Naming/AccessorMethodName:
@@ -990,13 +1047,16 @@ Naming/VariableNumber:
   CheckMethodNames: true
   CheckSymbols: true
   AllowedIdentifiers:
-  - capture3
-  - iso8601
-  - rfc1123_date
-  - rfc822
-  - rfc2822
-  - rfc3339
-  - x86_64
+  - is_501c3
+  - last4
+  - line1
+  - line2
+  - address_line1
+  - address_line2
+  - google_oauth2
+  - s3
+  - shift4
+  - Shift4
   AllowedPatterns: []
 Performance/BindCall:
   VersionAdded: '1.6'
@@ -1149,6 +1209,10 @@ RSpec/ExampleLength:
   CountAsOne: []
   VersionAdded: '1.5'
   VersionChanged: '2.3'
+  Exclude:
+  - "/spec/lib/props_module_spec.rb"
+  - "/spec/system/**/*"
+  - "/spec/serializers/**/*"
 RSpec/ExampleWithoutDescription:
   EnforcedStyle: always_allow
   VersionAdded: '1.22'
@@ -1187,6 +1251,8 @@ RSpec/FilePath:
   SpecSuffixOnly: false
   VersionAdded: '1.2'
   VersionChanged: '2.24'
+  Exclude:
+  - "/packs/*/spec/**/*"
 RSpec/Focus:
   VersionAdded: '1.5'
   VersionChanged: '2.1'
@@ -1212,6 +1278,12 @@ RSpec/InstanceVariable:
   AssignmentOnly: false
   VersionAdded: '1.0'
   VersionChanged: '1.7'
+  Exclude:
+  - "/spec/workers/salesforce/**/*"
+  - "/spec/views/**/*"
+  - "/spec/services/salesforce/**/*"
+  - "/spec/controllers/salesforce_controller_spec.rb"
+  - "/spec/controllers/v1/**/*"
 RSpec/ItBehavesLike:
   EnforcedStyle: it_behaves_like
   VersionAdded: '1.13'
@@ -1225,8 +1297,6 @@ RSpec/LeakyConstantDeclaration:
 RSpec/LetBeforeExamples:
   VersionAdded: '1.16'
   VersionChanged: '1.22'
-RSpec/LetSetup:
-  VersionAdded: '1.7'
 RSpec/MessageChain:
   VersionAdded: '1.7'
 RSpec/MissingExampleGroupArgument:
@@ -1237,6 +1307,8 @@ RSpec/MultipleExpectations:
   Max: 5
   VersionAdded: '1.7'
   VersionChanged: '1.21'
+  Exclude:
+  - "/spec/system/**/*"
 RSpec/MultipleSubjects:
   VersionAdded: '1.16'
 RSpec/NamedSubject:
@@ -1294,6 +1366,18 @@ RSpec/SharedExamples:
 RSpec/SingleArgumentMessageChain:
   VersionAdded: '1.9'
   VersionChanged: '1.10'
+RSpec/SpecFilePathFormat:
+  Include:
+  - "**/*_spec.rb"
+  Exclude:
+  - "/packs/*/spec/**/*"
+  CustomTransform:
+    RuboCop: rubocop
+    RSpec: rspec
+  IgnoreMethods: false
+  IgnoreMetadata:
+    type: routing
+  VersionAdded: '2.24'
 RSpec/StubbedMock:
   VersionAdded: '1.44'
 RSpec/SubjectStub:
@@ -1306,7 +1390,8 @@ RSpec/VariableDefinition:
   VersionAdded: '1.40'
 RSpec/VariableName:
   EnforcedStyle: snake_case
-  AllowedPatterns: []
+  AllowedPatterns:
+  - Authorization
   VersionAdded: '1.40'
   VersionChanged: '2.13'
 RSpec/VerifiedDoubles:
@@ -1322,6 +1407,279 @@ RSpec/Capybara/FeatureMethods:
   EnabledMethods: []
   VersionAdded: '1.17'
   VersionChanged: '2.0'
+RSpec/Rails/HttpStatus:
+  EnforcedStyle: symbolic
+  VersionAdded: '1.23'
+  VersionChanged: '2.20'
+Rails/ActiveRecordAliases:
+  VersionAdded: '0.53'
+Rails/ActiveRecordOverride:
+  Severity: warning
+  VersionAdded: '0.67'
+  VersionChanged: '2.18'
+  Include:
+  - app/models/**/*.rb
+Rails/ActiveSupportAliases:
+  VersionAdded: '0.48'
+Rails/ApplicationController:
+  VersionAdded: '2.4'
+  VersionChanged: '2.5'
+Rails/ApplicationJob:
+  VersionAdded: '0.49'
+  VersionChanged: '2.5'
+Rails/ApplicationMailer:
+  VersionAdded: '2.4'
+  VersionChanged: '2.5'
+Rails/ApplicationRecord:
+  VersionAdded: '0.49'
+  VersionChanged: '2.26'
+  Exclude:
+  - "/db/migrate/*"
+Rails/ArelStar:
+  VersionAdded: '2.9'
+Rails/AssertNot:
+  VersionAdded: '0.56'
+  Include:
+  - "**/test/**/*"
+Rails/BelongsTo:
+  VersionAdded: '0.62'
+Rails/Blank:
+  VersionAdded: '0.48'
+  VersionChanged: '2.10'
+  NilOrEmpty: true
+  NotPresent: true
+  UnlessPresent: true
+Rails/ContentTag:
+  VersionAdded: '2.6'
+  VersionChanged: '2.12'
+  Exclude:
+  - "/app/models/**/*.rb"
+  - "/config/**/*.rb"
+Rails/Date:
+  VersionAdded: '0.30'
+  VersionChanged: '2.11'
+  EnforcedStyle: flexible
+  AllowToTime: true
+Rails/Delegate:
+  VersionAdded: '0.21'
+  VersionChanged: '0.50'
+  EnforceForPrefixed: true
+Rails/DelegateAllowBlank:
+  VersionAdded: '0.44'
+Rails/DynamicFindBy:
+  VersionAdded: '0.44'
+  VersionChanged: '2.10'
+  Whitelist:
+  - find_by_sql
+  - find_by_token_for
+  AllowedMethods:
+  - find_by_sql
+  - find_by_token_for
+  AllowedReceivers:
+  - Gem::Specification
+  - page
+Rails/EnumHash:
+  VersionAdded: '2.3'
+  Include:
+  - app/models/**/*.rb
+Rails/EnumUniqueness:
+  VersionAdded: '0.46'
+  Include:
+  - app/models/**/*.rb
+Rails/EnvironmentComparison:
+  VersionAdded: '0.52'
+Rails/Exit:
+  VersionAdded: '0.41'
+  Include:
+  - app/**/*.rb
+  - config/**/*.rb
+  - lib/**/*.rb
+  Exclude:
+  - "/lib/**/*.rake"
+Rails/FilePath:
+  VersionAdded: '0.47'
+  VersionChanged: '2.4'
+  EnforcedStyle: slashes
+Rails/FindBy:
+  VersionAdded: '0.30'
+  VersionChanged: '2.21'
+  IgnoreWhereFirst: true
+Rails/HasAndBelongsToMany:
+  VersionAdded: '0.12'
+  Include:
+  - app/models/**/*.rb
+Rails/HasManyOrHasOneDependent:
+  VersionAdded: '0.50'
+  Include:
+  - app/models/**/*.rb
+Rails/HelperInstanceVariable:
+  VersionAdded: '2.0'
+  Include:
+  - app/helpers/**/*.rb
+Rails/HttpPositionalArguments:
+  VersionAdded: '0.44'
+  Include:
+  - spec/**/*
+  - test/**/*
+Rails/HttpStatus:
+  VersionAdded: '0.54'
+  VersionChanged: '2.11'
+  EnforcedStyle: symbolic
+Rails/IgnoredSkipActionFilterOption:
+  VersionAdded: '0.63'
+  Include:
+  - app/controllers/**/*.rb
+  - app/mailers/**/*.rb
+Rails/IndexBy:
+  VersionAdded: '2.5'
+  VersionChanged: '2.8'
+Rails/IndexWith:
+  VersionAdded: '2.5'
+  VersionChanged: '2.8'
+Rails/InverseOf:
+  VersionAdded: '0.52'
+  IgnoreScopes: false
+  Include:
+  - app/models/**/*.rb
+Rails/LexicallyScopedActionFilter:
+  VersionAdded: '0.52'
+  Include:
+  - app/controllers/**/*.rb
+  - app/mailers/**/*.rb
+Rails/LinkToBlank:
+  VersionAdded: '0.62'
+Rails/NotNullColumn:
+  VersionAdded: '0.43'
+  VersionChanged: '2.20'
+  Database:
+  SupportedDatabases:
+  - mysql
+  Include:
+  - db/**/*.rb
+Rails/Output:
+  VersionAdded: '0.15'
+  VersionChanged: '0.19'
+  Include:
+  - app/**/*.rb
+  - config/**/*.rb
+  - db/**/*.rb
+  - lib/**/*.rb
+  Exclude:
+  - "/db/seeds/**/*"
+Rails/OutputSafety:
+  VersionAdded: '0.41'
+Rails/Pick:
+  VersionAdded: '2.6'
+Rails/PluralizationGrammar:
+  VersionAdded: '0.35'
+Rails/Presence:
+  VersionAdded: '0.52'
+Rails/Present:
+  VersionAdded: '0.48'
+  VersionChanged: '0.67'
+  NotNilAndNotEmpty: true
+  NotBlank: true
+  UnlessBlank: true
+Rails/RakeEnvironment:
+  VersionAdded: '2.4'
+  VersionChanged: '2.6'
+  Include:
+  - "**/Rakefile"
+  - "**/*.rake"
+  Exclude:
+  - "/lib/capistrano/tasks/**/*.rake"
+Rails/ReadWriteAttribute:
+  VersionAdded: '0.20'
+  VersionChanged: '0.29'
+  Include:
+  - app/models/**/*.rb
+Rails/RedundantAllowNil:
+  VersionAdded: '0.67'
+  Include:
+  - app/models/**/*.rb
+Rails/RedundantForeignKey:
+  VersionAdded: '2.6'
+Rails/RedundantReceiverInWithOptions:
+  VersionAdded: '0.52'
+Rails/ReflectionClassName:
+  VersionAdded: '0.64'
+  VersionChanged: '2.10'
+Rails/RefuteMethods:
+  VersionAdded: '0.56'
+  EnforcedStyle: assert_not
+  Include:
+  - "**/test/**/*"
+Rails/RelativeDateConstant:
+  VersionAdded: '0.48'
+  VersionChanged: '2.13'
+Rails/RequestReferer:
+  VersionAdded: '0.41'
+  EnforcedStyle: referer
+Rails/ReversibleMigration:
+  VersionAdded: '0.47'
+  VersionChanged: '2.13'
+  Include:
+  - db/**/*.rb
+Rails/SafeNavigation:
+  VersionAdded: '0.43'
+  ConvertTry: false
+Rails/SafeNavigationWithBlank:
+  VersionAdded: '2.4'
+Rails/ScopeArgs:
+  VersionAdded: '0.19'
+  VersionChanged: '2.12'
+  Include:
+  - app/models/**/*.rb
+Rails/SkipsModelValidations:
+  VersionAdded: '0.47'
+  VersionChanged: '2.25'
+  ForbiddenMethods:
+  - decrement!
+  - decrement_counter
+  - increment!
+  - increment_counter
+  - insert
+  - insert!
+  - insert_all
+  - insert_all!
+  - toggle!
+  - touch
+  - touch_all
+  - update_all
+  - update_attribute
+  - update_column
+  - update_columns
+  - update_counters
+  - upsert
+  - upsert_all
+  AllowedMethods: []
+  Exclude:
+  - "/spec/**/*"
+  - "/db/**/*"
+Rails/UniqBeforePluck:
+  VersionAdded: '0.40'
+  VersionChanged: '2.13'
+  EnforcedStyle: conservative
+Rails/UniqueValidationWithoutIndex:
+  VersionAdded: '2.5'
+  Include:
+  - app/models/**/*.rb
+Rails/UnknownEnv:
+  Severity: warning
+  VersionAdded: '0.51'
+  VersionChanged: '2.18'
+  Environments:
+  - development
+  - loadtesting
+  - staging
+  - sandbox
+  - production
+  - test
+Rails/Validation:
+  VersionAdded: '0.9'
+  VersionChanged: '0.41'
+  Include:
+  - app/models/**/*.rb
 Rake/ClassDefinitionInTask:
   VersionAdded: 0.3.0
 Rake/Desc:
@@ -1417,6 +1775,8 @@ Style/CharacterLiteral:
 Style/ClassAndModuleChildren:
   VersionAdded: '0.19'
   EnforcedStyle: nested
+  Exclude:
+  - "/app/controllers/smart_donations_legacy/**/*"
 Style/ClassCheck:
   VersionAdded: '0.24'
   EnforcedStyle: is_a?
@@ -1535,7 +1895,8 @@ Style/FormatStringToken:
   MaxUnannotatedPlaceholdersAllowed: 1
   VersionAdded: '0.49'
   VersionChanged: '1.0'
-  AllowedMethods: []
+  AllowedMethods:
+  - redirect
   AllowedPatterns: []
 Style/GlobalStdStream:
   VersionAdded: '0.89'
@@ -1922,6 +2283,8 @@ Style/SymbolProc:
   AllowMethodsWithArguments: false
   AllowedMethods:
   - define_method
+  - mail
+  - respond_to
   AllowedPatterns: []
   AllowComments: false
 Style/TernaryParentheses:
