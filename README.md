@@ -22,7 +22,7 @@ Or install it yourself as:
 
 Create a an executable `bin/lint` file with:
 
-`touch bin/lint && chmod 755 bin/lint`
+`touch bin/lint && chmod +X bin/lint`
 
 Then add this to the file:
 
@@ -36,7 +36,7 @@ GLLint.call_cli(app_root: File.expand_path('..', __dir__))
 
 Then run `bin/lint` to lint your changes
 
-Alternatively, if your project doesn't have JavaScript, add `linters: ['rubocop/]`
+Alternatively, if your project doesn't have JavaScript, add `linters: ['rubocop']`
 
 ```ruby
 GLLint.call_cli(app_root: File.expand_path('..', __dir__),
