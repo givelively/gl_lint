@@ -7,10 +7,9 @@ module GLLint
                               StyleGuide SupportedStyles].freeze
 
       def write_rules(app_root)
-        puts 'Updating .rubocop_rules.yml'
+        puts "Updating .rubocop_rules.yml - version: #{rubocop_version}"
 
-        enabled_rules = [['RuboCop-version', rubocop_version]] +
-                        rubocop_rules.map { |arr| stored_rule(app_root, arr) }.compact
+        enabled_rules = rubocop_rules.map { |arr| stored_rule(app_root, arr) }.compact
 
         File.write('.rubocop_rules.yml', YAML.dump(enabled_rules.to_h))
       end
@@ -35,7 +34,7 @@ module GLLint
       end
 
       def rubocop_version
-        `rubocop -V`.strip.split("\n").first.split('[').first.strip
+        `rubocop -V`.strip.split("\n").first.split('[').first.strip.gsub(' running on', '')
       end
     end
   end

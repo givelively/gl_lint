@@ -81,7 +81,7 @@ RSpec.describe GLLint::ExportRubocop do
   end
 
   describe 'rubocop_version' do
-    let(:target) { '1.62.1 (using Parser 3.3.1.0, rubocop-ast 1.31.3, running on ruby 3.2.3)' }
+    let(:target) { '1.62.1 (using Parser 3.3.1.0, rubocop-ast 1.31.3, ruby 3.2.3)' }
 
     it 'returns the target', skip: !RubyV::ON_TARGET_VERSION do
       expect(described_class.send(:rubocop_version)).to eq target
@@ -93,7 +93,7 @@ RSpec.describe GLLint::ExportRubocop do
       # Write rubocop_rules.yml
       `bin/lint --write-rubocop-rules`
       # Verify that the file hasn't changed
-      expect(`git diff --exit-code --ignore-space-change .rubocop_rules.yml`).to eq('')
+      expect(`git diff --exit-code --ignore-space-change --unified=0 .rubocop_rules.yml`).to eq('')
     end
   end
 end
