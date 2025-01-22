@@ -7,7 +7,7 @@ module GLLint
                               StyleGuide SupportedStyles].freeze
 
       def write_rules(app_root)
-        puts 'Updating .rubocop_rules.yml'
+        puts "Updating .rubocop_rules.yml - version: #{rubocop_version}"
 
         enabled_rules = rubocop_rules.map { |arr| stored_rule(app_root, arr) }.compact
 
