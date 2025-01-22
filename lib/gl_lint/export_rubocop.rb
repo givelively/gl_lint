@@ -35,7 +35,7 @@ module GLLint
       end
 
       def rubocop_version
-        `rubocop -V`.strip.split("\n").first.split('[').first.strip
+        `rubocop -V`.strip.split("\n").first.split('[').first.strip.gsub(' running on', '')
       end
     end
   end
