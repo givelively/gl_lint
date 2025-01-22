@@ -160,6 +160,9 @@ DEPENDENCIES
   guard
   guard-rspec
   rspec
+  rubocop-performance
+  rubocop-rake
+  rubocop-rspec
 
 BUNDLED WITH
    2.4.21

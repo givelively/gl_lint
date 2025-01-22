@@ -12,8 +12,8 @@ RSpec.describe GLLint::FileSelector do
 
       context 'with schema.rb' do
         let(:filenames) do
-          ['packs/metrics/spec/record_metric_spec.rb', 'db/schema.rb', 'db/analytics_schema.rb', 'Gemfile',
-           'Gemfile.lock']
+          ['packs/metrics/spec/record_metric_spec.rb', 'db/schema.rb', 'db/analytics_schema.rb',
+           'Gemfile', 'Gemfile.lock']
         end
         let(:target_filenames) { ['packs/metrics/spec/record_metric_spec.rb', 'Gemfile'] }
         let(:target) { { rubocop: target_filenames, eslint: [] } }
