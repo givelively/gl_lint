@@ -4,9 +4,9 @@
 
 This is particularly useful for large projects where you don't want to lint all the files in the project.
 
-At Give Lively, we add an executable to `bin/lint` that calls this gem, to make it easy to autocorrect the files you change.
+At Give Lively, we create `bin/lint` and make it an executable that calls this gem - to make it easy to autocorrect the files you change.
 
-GLLint also adds a way to write a yaml file (`.rubocop_rules.yml`) with all the currently configured rubocop rules, via `bin/lint --write-rubocop-rules`. This is useful so that you can compare what changes from
+GLLint also adds a way to create a yaml file with all the currently configured rubocop rules (`.rubocop_rules.yml`). This is done via `bin/lint --write-rubocop-rules`. This file is useful so that you can compare what changes when updating Rubocop rules or changing gems or Ruby versions.
 
 
 ## Installation
