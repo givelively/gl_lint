@@ -1,12 +1,9 @@
 PATH
   remote: .
   specs:
-    gl_lint (0.5.0)
+    gl_lint (0.5.1)
       optparse
       rubocop
-      rubocop-performance
-      rubocop-rake
-      rubocop-rspec
 
 GEM
   remote: https://rubygems.org/
