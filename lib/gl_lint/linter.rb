@@ -8,7 +8,7 @@ module GLLint
 
       lint_ruby_files(linters, target_files, files[:rubocop], lint_strategy)
 
-      lint_prettier_files(linters, target_files, files[:prettier], lint_strategy)
+      lint_eslint_files(linters, target_files, files[:eslint], lint_strategy)
 
       puts '' # Add some space after printing linting out
 
@@ -59,15 +59,15 @@ module GLLint
       )
     end
 
-    def lint_prettier_files(linters, target_files, files, strategy)
-      return unless linters.include?('prettier')
+    def lint_eslint_files(linters, target_files, files, strategy)
+      return unless linters.include?('eslint')
 
-      result = print_files(target_files, files, strategy, 'Prettier')
+      result = print_files(target_files, files, strategy, 'eslint')
       return if result == :skip_lint
 
       # Need to manually call eslint, the package.json script specifies the folders to lint
-      prettier_command = strategy == :no_fix ? 'eslint' : 'eslint --fix'
-      run_linter("yarn run #{prettier_command} #{files&.join(' ')}")
+      eslint_command = strategy == :no_fix ? 'eslint' : 'eslint --fix'
+      run_linter("yarn run #{eslint_command} #{files&.join(' ')}")
     end
   end
 end

@@ -1,6 +1,6 @@
 # Give Lively Lint runner
 
-`GLLint` is a Ruby gem that handles running linters against specific files (e.g. just the changed files from a branch). It leverages `git`, `rubocop` and `prettier`
+`GLLint` is a Ruby gem that handles running linters against specific files (e.g. just the changed files from a branch). It leverages `git`, `rubocop` and `eslint`
 
 This is particularly useful for large projects where you don't want to lint all the files in the project.
 
