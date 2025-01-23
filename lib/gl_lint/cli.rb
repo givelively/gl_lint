@@ -2,7 +2,7 @@ require 'optparse'
 
 module GLLint
   class CLI
-    LINTERS = %w[rubocop prettier].freeze
+    LINTERS = %w[rubocop eslint].freeze
     DEFAULT_TARGET = '--changed'.freeze
 
     TARGET_FILE_OPTS = [
@@ -33,11 +33,11 @@ module GLLint
             options[:linters] = ['rubocop']
           end
 
-          parser.on('--prettier', 'Lints only with prettier') do
-            raise "This project doesn't support rubocop" unless LINTERS.include?('prettier')
-            raise "You can't pass both --rubocop and --prettier" if options[:linters] == ['rubocop']
+          parser.on('--eslint', 'Lints only with eslint') do
+            raise "This project doesn't support rubocop" unless LINTERS.include?('eslint')
+            raise "You can't pass both --rubocop and --eslint" if options[:linters] == ['rubocop']
 
-            options[:linters] = ['prettier']
+            options[:linters] = ['eslint']
           end
 
           parser.on('--no-fix', 'Does not auto-fix') do

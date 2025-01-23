@@ -4,10 +4,10 @@ RSpec.describe GLLint::FileSelector do
   describe 'files' do
     context 'with filenames' do
       let(:filenames) { ['packs/metrics/spec/record_metric_spec.rb'] }
-      let(:target) { { rubocop: filenames, prettier: [] } }
+      let(:target) { { rubocop: filenames, eslint: [] } }
 
       it 'returns filenames' do
-        expect(described_class.files(filenames:)).to eq({ rubocop: filenames, prettier: [] })
+        expect(described_class.files(filenames:)).to eq({ rubocop: filenames, eslint: [] })
       end
 
       context 'with schema.rb' do
@@ -16,7 +16,7 @@ RSpec.describe GLLint::FileSelector do
            'Gemfile.lock']
         end
         let(:target_filenames) { ['packs/metrics/spec/record_metric_spec.rb', 'Gemfile'] }
-        let(:target) { { rubocop: target_filenames, prettier: [] } }
+        let(:target) { { rubocop: target_filenames, eslint: [] } }
 
         it 'returns filenames' do
           expect(described_class.files(filenames:)).to eq target
@@ -37,7 +37,7 @@ RSpec.describe GLLint::FileSelector do
 
     context 'with target_files' do
       it 'returns nil' do
-        expect(described_class.files(target_files: '--all')).to eq({ rubocop: nil, prettier: nil })
+        expect(described_class.files(target_files: '--all')).to eq({ rubocop: nil, eslint: nil })
       end
     end
   end
