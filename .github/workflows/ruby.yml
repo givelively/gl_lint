@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.4', '3.3', '3.2.3']
+        ruby-version: ['3.4', '3.3', '3.2']
     env:
       RAILS_ENV: test
       CI: true
