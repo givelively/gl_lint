@@ -5,7 +5,7 @@ class RubyV
     version.split('.')[0..1].join('.')
   end
 
-  TARGET_VERSION = '3.2.3'.freeze
+  TARGET_VERSION = '3.2.8'.freeze
   ON_TARGET_VERSION = minor_version(RUBY_VERSION) == minor_version(TARGET_VERSION)
 end
 
