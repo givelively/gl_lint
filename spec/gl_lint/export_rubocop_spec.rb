@@ -81,7 +81,7 @@ RSpec.describe GLLint::ExportRubocop do
   end
 
   describe 'rubocop_version' do
-    let(:target) { '1.62.1 (using Parser 3.3.7.0, rubocop-ast 1.37.0, ruby 3.2.3)' }
+    let(:target) { '1.62.1 (using Parser 3.3.9.0, rubocop-ast 1.47.1, ruby 3.2.8)' }
 
     it 'returns the target', skip: !RubyV::ON_TARGET_VERSION do
       expect(described_class.send(:rubocop_version)).to eq target
