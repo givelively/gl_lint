@@ -54,7 +54,7 @@ module GLLint
                     end
       puts '*Rubcop is running in unsafe mode*', '' if rubocop_arg == '-A'
       run_linter(
-        'bundle exec rubocop --format quiet -c .rubocop.yml ' \
+        'bundle exec rubocop --format quiet' \
         "#{rubocop_arg} #{files&.join(' ')}"
       )
     end
