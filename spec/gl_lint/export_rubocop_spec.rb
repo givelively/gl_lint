@@ -1,14 +1,5 @@
 require 'spec_helper'
 
-class RubyV
-  def self.minor_version(version)
-    version.split('.')[0..1].join('.')
-  end
-
-  TARGET_VERSION = '3.2.8'.freeze
-  ON_TARGET_VERSION = minor_version(RUBY_VERSION) == minor_version(TARGET_VERSION)
-end
-
 RSpec.describe GLLint::ExportRubocop do
   describe 'stored_rule' do
     let(:app_root) { Dir.pwd }
@@ -80,20 +71,28 @@ RSpec.describe GLLint::ExportRubocop do
     end
   end
 
-  describe 'rubocop_version' do
-    let(:target) { '1.62.1 (using Parser 3.3.9.0, rubocop-ast 1.47.1, ruby 3.2.8)' }
+  context 'with ruby version' do
+    rules_ruby_version = '3.2.9' # Update this when the rules are written with a new Ruby version
 
-    it 'returns the target', skip: !RubyV::ON_TARGET_VERSION do
-      expect(described_class.send(:rubocop_version)).to eq target
+    # Don't match on patch version
+    rules_version_matches = rules_ruby_version.split('.')[0..1] == RUBY_VERSION.split('.')[0..1]
+
+    describe "rubocop_version #{rules_ruby_version}" do
+      let(:target) { '1.62.1 (using Parser 3.3.10.0, rubocop-ast 1.47.1, ruby 3.2.9)' }
+
+      it 'returns the target', skip: !rules_version_matches do
+        expect(described_class.send(:rubocop_version)).to eq target
+      end
     end
-  end
 
-  describe 'written_rules' do
-    it 'has the rules', skip: !RubyV::ON_TARGET_VERSION do
-      # Write rubocop_rules.yml
-      `bin/lint --write-rubocop-rules`
-      # Verify that the file hasn't changed
-      expect(`git diff --exit-code --ignore-space-change --unified=0 .rubocop_rules.yml`).to eq('')
+    describe 'written_rules' do
+      it 'has the rules', skip: !rules_version_matches do
+        # Write rubocop_rules.yml
+        `bin/lint --write-rubocop-rules`
+        # Verify that the file hasn't changed
+        expect(`git diff --exit-code --ignore-space-change --unified=0 .rubocop_rules.yml`)
+          .to eq('')
+      end
     end
   end
 end
