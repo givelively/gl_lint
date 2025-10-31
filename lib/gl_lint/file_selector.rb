@@ -1,6 +1,6 @@
 module GLLint
   class FileSelector
-    NON_RB_RUBY_FILES = %w[Gemfile Rakefile config.ru .erb
+    NON_RB_RUBY_FILES = %w[Gemfile Rakefile config.ru .erb .haml
                            bin/bundle bin/lint bin/rubocop bin/setup bin/update].freeze
 
     class << self

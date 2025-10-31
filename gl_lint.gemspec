@@ -5,9 +5,9 @@ lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'gl_lint/version'
 
-NON_GEM_FILES = ['Gemfile', 'Gemfile.lock', 'Guardfile', 'bin/lint'].freeze
-
 Gem::Specification.new do |spec|
+  NON_GEM_FILES = %w[Gemfile Gemfile.lock Guardfile bin/lint].freeze
+
   spec.name = 'gl_lint'
   spec.version = GLLint::VERSION
   spec.authors = ['Give Lively']
