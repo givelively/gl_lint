@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 class RubyV
+  TARGET_VERSION = '3.2.8'.freeze
+  ON_TARGET_VERSION = minor_version(RUBY_VERSION) == minor_version(TARGET_VERSION)
+
   def self.minor_version(version)
     version.split('.')[0..1].join('.')
   end
-
-  TARGET_VERSION = '3.2.8'.freeze
-  ON_TARGET_VERSION = minor_version(RUBY_VERSION) == minor_version(TARGET_VERSION)
 end
 
 RSpec.describe GLLint::ExportRubocop do

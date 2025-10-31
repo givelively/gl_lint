@@ -6,8 +6,6 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'gl_lint/version'
 
 Gem::Specification.new do |spec|
-  NON_GEM_FILES = %w[Gemfile Gemfile.lock Guardfile bin/lint].freeze
-
   spec.name = 'gl_lint'
   spec.version = GLLint::VERSION
   spec.authors = ['Give Lively']
@@ -20,8 +18,10 @@ Gem::Specification.new do |spec|
 
   spec.extra_rdoc_files = ['README.md']
 
-  spec.files = `git ls-files`
-               .split($INPUT_RECORD_SEPARATOR).grep_v(/^(spec|\.)/) - NON_GEM_FILES
+  spec.files =
+    `git ls-files`.split($INPUT_RECORD_SEPARATOR).grep_v(/^(spec|\.)/) -
+    %w[Gemfile Gemfile.lock Guardfile bin/lint]
+
   spec.require_paths = ['lib']
 
   spec.add_dependency 'optparse'
