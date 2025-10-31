@@ -77,6 +77,7 @@ GLCops/SidekiqInheritsFromSidekiqJob:
   Include:
   - app/**/*_worker.rb
   - app/**/*_job.rb
+GLCops/TailwindNoContradictingClassName: {}
 GLCops/UniqueIdentifier:
   Include:
   - app/components/**/*.haml
