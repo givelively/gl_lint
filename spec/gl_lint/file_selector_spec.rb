@@ -7,7 +7,8 @@ RSpec.describe GLLint::FileSelector do
       let(:target) { { rubocop: filenames, eslint: [], herb: [] } }
 
       it 'returns filenames' do
-        expect(described_class.files(filenames:)).to eq({ rubocop: filenames, eslint: [], herb: [] })
+        expect(described_class.files(filenames:)).to eq({ rubocop: filenames, eslint: [],
+                                                          herb: [] })
       end
 
       context 'with schema.rb' do
@@ -16,7 +17,7 @@ RSpec.describe GLLint::FileSelector do
            'Gemfile', 'Gemfile.lock']
         end
         let(:target_filenames) { ['packs/metrics/spec/record_metric_spec.rb', 'Gemfile'] }
-        let(:target) { { rubocop: target_filenames, eslint: [], herb: []} }
+        let(:target) { { rubocop: target_filenames, eslint: [], herb: [] } }
 
         it 'returns filenames' do
           expect(described_class.files(filenames:)).to eq target
@@ -44,7 +45,8 @@ RSpec.describe GLLint::FileSelector do
            app/models/salesforce_external_sync.rb
            app/components/smart_donations/applied_nonprofit_banner/component.html.haml]
       end
-      let(:target) { {rubocop: filenames[4..5], eslint: filenames[2..3], herb: filenames[0..1] }}
+      let(:target) { { rubocop: filenames[4..5], eslint: filenames[2..3], herb: filenames[0..1] } }
+
       it 'returns filenames' do
         expect(described_class.files(filenames:)).to eq target
       end
@@ -52,7 +54,8 @@ RSpec.describe GLLint::FileSelector do
 
     context 'with target_files' do
       it 'returns nil' do
-        expect(described_class.files(target_files: '--all')).to eq({ rubocop: nil, eslint: nil, herb: nil })
+        expect(described_class.files(target_files: '--all')).to eq({ rubocop: nil, eslint: nil,
+                                                                     herb: nil })
       end
     end
   end
