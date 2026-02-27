@@ -14,7 +14,7 @@ RSpec.describe GLLint do
     let(:passed_args) { ['--list-files', '--unsafe-fix'] }
 
     it 'parses the options' do
-      expect_any_instance_of(GLLint::Linter).to receive(:lint).with(linters: %w[rubocop eslint],
+      expect_any_instance_of(GLLint::Linter).to receive(:lint).with(linters: %w[rubocop eslint herb],
                                                                     target_files: '--changed',
                                                                     filenames: nil,
                                                                     lint_strategy: :list_only)
@@ -39,7 +39,7 @@ RSpec.describe GLLint do
 
       it 'parses the options' do
         expect_any_instance_of(GLLint::Linter)
-          .to receive(:lint).with(linters: %w[rubocop eslint],
+          .to receive(:lint).with(linters: %w[rubocop eslint herb],
                                   target_files: '--changed',
                                   filenames: ['spec/gl_lint_spec.rb'],
                                   lint_strategy: :no_fix)

@@ -69,5 +69,16 @@ module GLLint
       eslint_command = strategy == :no_fix ? 'eslint' : 'eslint --fix'
       run_linter("yarn run #{eslint_command} #{files&.join(' ')}")
     end
+
+    def lint_herb_files(linters, target_files, files, strategy)
+      return unless linters.include?('herb')
+
+      result = print_files(target_files, files, strategy, 'herb')
+      return if result == :skip_lint
+
+      # Need to manually call herb, the .herb.yml specifies the folders to lint,
+      herb_command = strategy == :no_fix ? 'herb-format --check' : 'herb-format --fix'
+      run_linter("yarn run #{herb_command} --github #{files&.join(' ')}")
+    end
   end
 end

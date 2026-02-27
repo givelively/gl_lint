@@ -1,6 +1,6 @@
 module GLLint
   class FileSelector
-    NON_RB_RUBY_FILES = %w[Gemfile Rakefile config.ru .erb .haml
+    NON_RB_RUBY_FILES = %w[Gemfile Rakefile config.ru .haml
                            bin/bundle bin/lint bin/rubocop bin/setup bin/update].freeze
 
     class << self
@@ -8,15 +8,17 @@ module GLLint
         selected_files = filenames || filenames_from_target_files(target_files)
 
         if selected_files
-          rubocop_files = selected_files.grep(/\.(rb|rake|gemspec)\z/)
-          rubocop_files += selected_files.select { |f| f.end_with?(*NON_RB_RUBY_FILES) }
+          rubocop = selected_files.grep(/\.(rb|rake|gemspec)\z/)
+          rubocop += selected_files.select { |f| f.end_with?(*NON_RB_RUBY_FILES) }
           # Make certain that schemas are ignored
-          rubocop_files.reject! { |f| f.match?(%r{db/.*schema.rb}) }
+          rubocop.reject! { |f| f.match?(%r{db/.*schema.rb}) }
 
-          eslint_files = selected_files.grep(/\.(js|jsx|css)\z/)
+          eslint = selected_files.grep(/\.(js|jsx|css)\z/)
+
+          herb = selected_files.grep(/\.(erb|html|rhtml)\z/)
         end
 
-        { rubocop: rubocop_files, eslint: eslint_files }
+        { rubocop:, eslint:, herb: }
       end
 
       private
