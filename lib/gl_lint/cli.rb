@@ -35,14 +35,19 @@ module GLLint
 
           parser.on('--eslint', 'Lints only with eslint') do
             raise "This project doesn't support eslint" unless LINTERS.include?('eslint')
-            raise "You can't pass both --rubocop and --eslint" if options[:linters] == ['rubocop']
+            if options[:linters] == ['rubocop'] || options[:linters] == ['herb']
+              raise "You can't pass both --rubocop and --eslint"
+            end
 
             options[:linters] = ['eslint']
           end
 
           parser.on('--herb', 'Lints only with herb') do
             raise "This project doesn't support herb" unless LINTERS.include?('herb')
-            raise "You can't pass --rubocop or --eslint and --herb" if options[:linters].any?
+
+            if options[:linters] == ['rubocop'] || options[:linters] == ['eslint']
+              raise "You can't pass --rubocop or --eslint and --herb"
+            end
 
             options[:linters] = ['herb']
           end

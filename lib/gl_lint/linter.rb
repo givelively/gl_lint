@@ -7,9 +7,7 @@ module GLLint
       files = GLLint::FileSelector.files(filenames:, target_files:)
 
       lint_ruby_files(linters, target_files, files[:rubocop], lint_strategy)
-
       lint_eslint_files(linters, target_files, files[:eslint], lint_strategy)
-
       lint_herb_files(linters, target_files, files[:herb], lint_strategy)
 
       puts '' # Add some space after printing linting out
