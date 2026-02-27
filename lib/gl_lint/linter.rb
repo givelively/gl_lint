@@ -7,8 +7,8 @@ module GLLint
       files = GLLint::FileSelector.files(filenames:, target_files:)
 
       lint_ruby_files(linters, target_files, files[:rubocop], lint_strategy)
-
       lint_eslint_files(linters, target_files, files[:eslint], lint_strategy)
+      lint_herb_files(linters, target_files, files[:herb], lint_strategy)
 
       puts '' # Add some space after printing linting out
 
@@ -63,11 +63,22 @@ module GLLint
       return unless linters.include?('eslint')
 
       result = print_files(target_files, files, strategy, 'eslint')
-      return if result == :skip_lint
+      return if result == :no_lint
 
       # Need to manually call eslint, the package.json script specifies the folders to lint
       eslint_command = strategy == :no_fix ? 'eslint' : 'eslint --fix'
       run_linter("yarn run #{eslint_command} #{files&.join(' ')}")
+    end
+
+    def lint_herb_files(linters, target_files, files, strategy)
+      return unless linters.include?('herb')
+
+      result = print_files(target_files, files, strategy, 'herb')
+      return if result == :no_lint
+
+      # Need to manually call herb, the .herb.yml specifies the folders to lint,
+      herb_command = strategy == :no_fix ? 'herb-format --check' : 'herb-format'
+      run_linter("yarn run #{herb_command} #{files&.join(' ')}")
     end
   end
 end
